@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="color-scheme" content="light dark">
+    <script>
+        function validate(){
+            var format=/^\w+@connect.hku.hk$|^\w+@hku.hk$/;
+            var text=document.getElementById("mail").value; 
+            return format.test(text);
+        }
+        function modify(){
+            if(validate()){
+                document.getElementById("mail").style.borderColor="green";
+                document.getElementById("button").removeAttribute("disabled");
+            }
+            else
+                document.getElementById("button").setAttribute("disabled","");
+            return;
+        }
+        function print(){
+            var text=document.getElementById("mail").value;
+            var pos=text.search("@");
+            document.getElementById("UID").innerHTML=text.substring(0,pos);
+            return;
+        }
+    </script>
+    <style>
+        input{
+            border-color: red;
+            border-style: solid;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+    <p>邮箱：</p>
+    <form>
+        <input id="mail" type="text" size="25" oninput="modify()">
+        <button id="button" type="button" disabled="disabled" onclick="print()">提交</button>
+    </form>
+    <p id="UID"></p>
+</body>
+</html>
